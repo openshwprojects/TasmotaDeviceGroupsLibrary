@@ -15,6 +15,8 @@
     
 #define PORT     4447 
 #define MAXLINE 1024 
+
+#include "test_config.h"
     
 // Driver code 
 int main() { 
@@ -51,7 +53,7 @@ int main() {
     // Filling server information 
     servaddr.sin_family    = AF_INET; // IPv4 
 //    servaddr.sin_addr.s_addr = INADDR_ANY; 
-    servaddr.sin_addr.s_addr  = inet_addr("192.168.0.118");
+    servaddr.sin_addr.s_addr  = inet_addr(MY_CAPTURE_IP);
     servaddr.sin_port = htons(PORT); 
         
     // Bind the socket with the server address 

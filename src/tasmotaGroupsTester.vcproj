@@ -210,6 +210,10 @@
 				RelativePath=".\shared.h"
 				>
 			</File>
+			<File
+				RelativePath=".\test_config.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

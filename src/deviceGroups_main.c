@@ -1,6 +1,19 @@
 #include "deviceGroups_local.h"
 #include "bitmessage_public.h"
 
+void DGR_BeginWriting(bitMessage_t *msg) {
+
+}
+void DGR_AppendPowerState(bitMessage_t *msg, int numChannels, int channelBits) {
+
+}
+void DGR_AppendDimmer(bitMessage_t *msg, byte dimmValue) {
+
+}
+void DGR_Finish(bitMessage_t *msg) {
+
+}
+
 int DGR_Parse(const byte *data, int len) {
 	bitMessage_t msg;
 	char groupName[32];
@@ -22,6 +35,23 @@ int DGR_Parse(const byte *data, int len) {
 	}
 	sequence = MSG_ReadU16(&msg);
 	flags = MSG_ReadU16(&msg);
+
+	if(1) {
+		FILE *f;
+		char fname[64];
+
+		sprintf(fname,"received_%s_seq_%i.bin",groupName,sequence);
+		
+		f = fopen(fname,"wb");
+		if(f == 0) {
+			printf("Failed to open for writing - %s\n",fname);
+		} else {
+			fwrite(data,len,1,f);
+			fclose(f);
+			printf("Wrote %i bytes to %s\n",len,fname);
+		}
+	}
+
 	printf("DGR_Parse: seq %i, flags %i\n",sequence, flags);
 	while(MSG_EOF(&msg)==0) {
 		type = MSG_ReadByte(&msg);

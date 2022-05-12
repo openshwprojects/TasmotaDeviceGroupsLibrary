@@ -26,6 +26,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "test_config.h"
+
 #define MSGBUFSIZE 256
 
 int main(int argc, char *argv[])
@@ -88,7 +90,7 @@ int main(int argc, char *argv[])
     //
     mreq.imr_multiaddr.s_addr = inet_addr(group);
     //mreq.imr_interface.s_addr = htonl(INADDR_ANY);
-    mreq.imr_interface.s_addr = inet_addr("192.168.0.118");
+    mreq.imr_interface.s_addr = inet_addr(MY_CAPTURE_IP);
     if (
         setsockopt(
             fd, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*) &mreq, sizeof(mreq)
