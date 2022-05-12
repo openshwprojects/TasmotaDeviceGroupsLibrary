@@ -36,3 +36,28 @@
 
 
 
+#define DGR_RELAY_NONE	0
+#define DGR_RELAY_1		1
+#define DGR_RELAY_2		2
+#define DGR_RELAY_3		4
+#define DGR_RELAY_4		8
+#define DGR_RELAY_5		16
+#define DGR_RELAY_6		32
+#define DGR_RELAY_7		64
+#define DGR_RELAY_8		128
+#define DGR_RELAY_9		256
+#define DGR_RELAY_10	512
+#define DGR_RELAY_11	1024
+#define DGR_RELAY_12	2048
+#define DGR_RELAY_13	4096
+#define DGR_RELAY_14	8192
+#define DGR_RELAY_15	16384
+#define DGR_RELAY_16	32768
+#define DGR_RELAY_17	65536
+#define DGR_RELAY_18	131072
+#define DGR_RELAY_19	262144
+#define DGR_RELAY_20	524288
+#define DGR_RELAY_21	1048576
+#define DGR_RELAY_22	2097152
+#define DGR_RELAY_23	4194304
+#define DGR_RELAY_24	8388608

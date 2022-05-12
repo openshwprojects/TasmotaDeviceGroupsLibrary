@@ -13,6 +13,7 @@ int MSG_SkipBytes(bitMessage_t *msg, int c);
 int MSG_CheckAndSkip(bitMessage_t *msg, const char *s, int len);
 unsigned short MSG_ReadU16(bitMessage_t *msg);
 byte MSG_ReadByte(bitMessage_t *msg);
+int MSG_Read3Bytes(bitMessage_t *msg);
 int MSG_EOF(bitMessage_t *msg);
 
 // bitmessage_write.c

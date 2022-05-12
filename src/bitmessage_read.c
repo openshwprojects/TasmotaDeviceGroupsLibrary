@@ -46,6 +46,19 @@ unsigned short MSG_ReadU16(bitMessage_t *msg) {
 
 	return ret;
 }
+int MSG_Read3Bytes(bitMessage_t *msg) {
+	int ret = 0;
+
+	if(msg->position + 3 > msg->totalSize)
+		return 0;
+
+	memcpy(&ret,msg->data + msg->position, 3);
+
+	msg->position += 3;
+
+	return ret;
+
+}
 byte MSG_ReadByte(bitMessage_t *msg) {
 	byte ret;
 
