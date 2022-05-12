@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tasmotaGroupsTester", "tasmotaGroupsTester.vcproj", "{63DF19B1-BEEE-4721-BAC0-4E44A46F527F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63DF19B1-BEEE-4721-BAC0-4E44A46F527F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{63DF19B1-BEEE-4721-BAC0-4E44A46F527F}.Debug|Win32.Build.0 = Debug|Win32
+		{63DF19B1-BEEE-4721-BAC0-4E44A46F527F}.Release|Win32.ActiveCfg = Release|Win32
+		{63DF19B1-BEEE-4721-BAC0-4E44A46F527F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
