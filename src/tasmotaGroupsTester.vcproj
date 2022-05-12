@@ -186,6 +186,13 @@
 			<File
 				RelativePath=".\main_broad.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\main_multi.c"
