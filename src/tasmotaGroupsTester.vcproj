@@ -164,6 +164,26 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\bitmessage_public.h"
+				>
+			</File>
+			<File
+				RelativePath=".\bitmessage_read.c"
+				>
+			</File>
+			<File
+				RelativePath=".\deviceGroups_local.h"
+				>
+			</File>
+			<File
+				RelativePath=".\deviceGroups_main.c"
+				>
+			</File>
+			<File
+				RelativePath=".\deviceGroups_public.h"
+				>
+			</File>
+			<File
 				RelativePath=".\main_broad.c"
 				>
 			</File>
@@ -178,6 +198,10 @@
 						Name="VCCLCompilerTool"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\shared.h"
+				>
 			</File>
 		</Filter>
 		<Filter

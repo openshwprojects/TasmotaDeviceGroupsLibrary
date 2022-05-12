@@ -54,29 +54,27 @@ int main() {
     servaddr.sin_addr.s_addr  = inet_addr("192.168.0.118");
     servaddr.sin_port = htons(PORT); 
         
-
-
     // Bind the socket with the server address 
-    if ( bind(sockfd, (const struct sockaddr *)&servaddr,  
-            sizeof(servaddr)) < 0 ) 
+    if ( bind(sockfd, (const struct sockaddr *)&servaddr,sizeof(servaddr)) < 0 ) 
     { 
         perror("bind failed"); 
         exit(EXIT_FAILURE); 
     } 
     printf("Server listening\n"); 
 	while(1) {
-    len = sizeof(cliaddr);  //len is value/result 
-    
-    n = recvfrom(sockfd, (char *)buffer, MAXLINE,  
-                0, ( struct sockaddr *) &cliaddr, 
-                &len); 
-    buffer[n] = '\0'; 
-    printf("Client : %s\n", buffer); 
-    //sendto(sockfd, (const char *)hello, strlen(hello),  
-    //    0, (const struct sockaddr *) &cliaddr, 
-    //        len); 
-    //printf("Hello message sent.\n");  
-    //    
+		len = sizeof(cliaddr);  //len is value/result 
+	    
+		n = recvfrom(sockfd, (char *)buffer, MAXLINE,  
+					0, ( struct sockaddr *) &cliaddr, 
+					&len); 
+		buffer[n] = '\0'; 
+		printf("Received %i bytes\n", n); 
+		DGR_Parse(buffer, n);
+		//sendto(sockfd, (const char *)hello, strlen(hello),  
+		//    0, (const struct sockaddr *) &cliaddr, 
+		//        len); 
+		//printf("Hello message sent.\n");  
+		//    
 	}
     return 0; 
 }

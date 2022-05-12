@@ -118,6 +118,7 @@ int main(int argc, char *argv[])
         }
 		printf("Received %i bytes\n",nbytes);
         msgbuf[nbytes] = '\0';
+		DGR_Parse(msgbuf, nbytes);
        // puts(msgbuf);
      }
 
