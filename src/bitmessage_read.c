@@ -19,12 +19,16 @@ int MSG_ReadString(bitMessage_t *msg, char *out, int outBufferSize) {
 	const char *start;
 
 	start = (const char*)(msg->data + msg->position);
-	do {
+	while(1) {
 		if(msg->position >= msg->totalSize) {
 			return -1;
 		}
+		if(msg->data[msg->position] == 0) {
+			msg->position++;
+			break;
+		}
 		msg->position++;
-	} while(msg->data[msg->position]);
+	} 
 	
 	// TODO: safe.
 	strcpy(out, start);
@@ -38,15 +42,19 @@ unsigned short MSG_ReadU16(bitMessage_t *msg) {
 
 	ret = *(unsigned short*)(msg->data + msg->position);
 
+	msg->position += sizeof(unsigned short);
+
 	return ret;
 }
-byte MSG_ReadU16(bitMessage_t *msg) {
+byte MSG_ReadByte(bitMessage_t *msg) {
 	byte ret;
 
 	if(msg->position + sizeof(byte) > msg->totalSize)
 		return 0;
 
 	ret = *(byte*)(msg->data + msg->position);
+
+	msg->position += sizeof(byte);
 
 	return ret;
 }
@@ -60,6 +68,11 @@ int MSG_CheckAndSkip(bitMessage_t *msg, const char *s, int len) {
 	}	
 	msg->position += len;
 	return len;
+}
+int MSG_EOF(bitMessage_t *msg) {
+	if(msg->position >= msg->totalSize)
+		return 1;
+	return 0;
 }
 
 

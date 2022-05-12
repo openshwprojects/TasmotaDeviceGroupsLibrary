@@ -4,7 +4,8 @@
 int DGR_Parse(const byte *data, int len) {
 	bitMessage_t msg;
 	char groupName[32];
-	int sequence, flags;
+	int sequence, flags, type;
+	int bGotEOL = 0;
 
 	MSG_BeginReading(&msg,data,len);
 
@@ -18,7 +19,17 @@ int DGR_Parse(const byte *data, int len) {
 	}
 	sequence = MSG_ReadU16(&msg);
 	flags = MSG_ReadU16(&msg);
-
+	while(MSG_EOF(&msg)==0) {
+		type = MSG_ReadByte(&msg);
+		switch(type){
+			case DGR_ITEM_EOL:
+				bGotEOL = 1;
+				break;
+		}
+		if(bGotEOL) {
+			break;
+		}
+	}
 
 
 	return 0;
