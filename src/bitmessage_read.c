@@ -7,7 +7,6 @@ void MSG_BeginReading(bitMessage_t *msg, byte *data, int dataSize) {
 	msg->totalSize = dataSize;
 	msg->data = data;
 }
-
 int MSG_SkipBytes(bitMessage_t *msg, int c) {
 	if(msg->position + c > msg->totalSize)
 		return 0;

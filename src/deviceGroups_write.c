@@ -2,19 +2,19 @@
 #include "bitmessage_public.h"
 
 int DGR_BeginWriting(bitMessage_t *msg, const char *groupName, unsigned short sequence, unsigned short flags) {
-	if(MSG_WriteBytes(&msg,TASMOTA_DEVICEGROUPS_HEADER,strlen(TASMOTA_DEVICEGROUPS_HEADER))==0) {
+	if(MSG_WriteBytes(msg,TASMOTA_DEVICEGROUPS_HEADER,strlen(TASMOTA_DEVICEGROUPS_HEADER))==0) {
 		printf("DGR_BeginWriting: no space for header\n");
 		return 1;
 	}
-	if(MSG_WriteString(&msg,groupName) <= 0) {
+	if(MSG_WriteString(msg,groupName) <= 0) {
 		printf("DGR_BeginWriting: no space for group name\n");
 		return 1;
 	}
-	if(MSG_WriteU16(&msg,sequence) <= 0) {
+	if(MSG_WriteU16(msg,sequence) <= 0) {
 		printf("DGR_BeginWriting: no space for sequence\n");
 		return 1;
 	}
-	if(MSG_WriteU16(&msg,flags) <= 0) {
+	if(MSG_WriteU16(msg,flags) <= 0) {
 		printf("DGR_BeginWriting: no space for flags\n");
 		return 1;
 	}
@@ -42,3 +42,25 @@ void DGR_Finish(bitMessage_t *msg) {
 	MSG_WriteByte(msg,DGR_ITEM_EOL);
 
 }
+
+
+int DGR_Quick_FormatPowerState(byte *buffer, int maxSize, const char *groupName, int sequence, int flags, int channels, int numChannels) {
+	bitMessage_t msg;
+	MSG_BeginWriting(&msg,buffer,maxSize);
+	DGR_BeginWriting(&msg,groupName, sequence,flags);
+	DGR_AppendPowerState(&msg,numChannels,channels);
+	DGR_Finish(&msg);
+	return msg.position;
+}
+
+int DGR_Quick_FormatBrightness(byte *buffer, int maxSize, const char *groupName, int sequence,int flags, byte brightness) {
+	bitMessage_t msg;
+	MSG_BeginWriting(&msg,buffer,maxSize);
+	DGR_BeginWriting(&msg,groupName, sequence,flags);
+	DGR_AppendDimmer(&msg,brightness);
+	DGR_Finish(&msg);
+	return msg.position;
+}
+
+
+

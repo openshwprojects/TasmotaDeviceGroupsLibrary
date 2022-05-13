@@ -1,5 +1,11 @@
 #include "bitmessage_public.h"
 
+void MSG_BeginWriting(bitMessage_t *msg, byte *data, int dataSize) {
+	msg->position = 0;
+	msg->totalSize = dataSize;
+	msg->data = data;
+}
+
 int MSG_WriteBytes(bitMessage_t *msg, void *p, int numBytes) {
 	if(msg->position + numBytes >= msg->totalSize)
 		return 0;
