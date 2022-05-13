@@ -15,6 +15,7 @@ unsigned short MSG_ReadU16(bitMessage_t *msg);
 byte MSG_ReadByte(bitMessage_t *msg);
 int MSG_Read3Bytes(bitMessage_t *msg);
 int MSG_EOF(bitMessage_t *msg);
+const char *MSG_GetStringPointerAtCurrentPosition(bitMessage_t *msg);
 
 // bitmessage_write.c
 void MSG_BeginWriting(bitMessage_t *msg, byte *data, int dataSize);

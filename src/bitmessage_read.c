@@ -7,6 +7,10 @@ void MSG_BeginReading(bitMessage_t *msg, byte *data, int dataSize) {
 	msg->totalSize = dataSize;
 	msg->data = data;
 }
+const char *MSG_GetStringPointerAtCurrentPosition(bitMessage_t *msg) {
+	const char *r = (const char*)(msg->data+msg->position);
+	return r;
+}
 int MSG_SkipBytes(bitMessage_t *msg, int c) {
 	if(msg->position + c > msg->totalSize)
 		return 0;

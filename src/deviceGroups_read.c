@@ -78,6 +78,12 @@ int DGR_Parse(const byte *data, int len) {
 			}
 		} else if(type < DGR_ITEM_MAX_STRING) {
 			byte sLen = MSG_ReadByte(&msg);
+			// DevGroupSend 193=Tst
+			// Gives sLen 4
+			if(type == DGR_ITEM_COMMAND) {
+				const char *cmd = MSG_GetStringPointerAtCurrentPosition(&msg);
+				printf("DGR_ITEM_COMMAND: %s\n",cmd);
+			}
 			MSG_SkipBytes(&msg,sLen);
 		} else if(type == DGR_ITEM_LIGHT_CHANNELS) {
 			byte sLen = MSG_ReadByte(&msg);
