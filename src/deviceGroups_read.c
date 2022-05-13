@@ -1,18 +1,6 @@
 #include "deviceGroups_local.h"
 #include "bitmessage_public.h"
 
-void DGR_BeginWriting(bitMessage_t *msg) {
-
-}
-void DGR_AppendPowerState(bitMessage_t *msg, int numChannels, int channelBits) {
-
-}
-void DGR_AppendDimmer(bitMessage_t *msg, byte dimmValue) {
-
-}
-void DGR_Finish(bitMessage_t *msg) {
-
-}
 
 int DGR_Parse(const byte *data, int len) {
 	bitMessage_t msg;
@@ -93,7 +81,16 @@ int DGR_Parse(const byte *data, int len) {
 			MSG_SkipBytes(&msg,sLen);
 		} else if(type == DGR_ITEM_LIGHT_CHANNELS) {
 			byte sLen = MSG_ReadByte(&msg);
-			MSG_SkipBytes(&msg,sLen);
+			if(sLen == 5) {
+				byte r, g, b, c, w;
+				r = MSG_ReadByte(&msg);
+				g = MSG_ReadByte(&msg);
+				b = MSG_ReadByte(&msg);
+				c = MSG_ReadByte(&msg);
+				w = MSG_ReadByte(&msg);
+			} else {
+				MSG_SkipBytes(&msg,sLen);
+			}
 		} else {
 			byte sLen = MSG_ReadByte(&msg);
 			MSG_SkipBytes(&msg,sLen);

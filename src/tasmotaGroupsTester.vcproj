@@ -172,11 +172,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\deviceGroups_local.h"
+				RelativePath=".\bitmessage_write.c"
 				>
 			</File>
 			<File
-				RelativePath=".\deviceGroups_main.c"
+				RelativePath=".\deviceGroups_local.h"
 				>
 			</File>
 			<File
@@ -184,7 +184,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\main_broad.c"
+				RelativePath=".\deviceGroups_read.c"
+				>
+			</File>
+			<File
+				RelativePath=".\deviceGroups_write.c"
+				>
+			</File>
+			<File
+				RelativePath=".\main_receive_broad.c"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -195,7 +203,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\main_multi.c"
+				RelativePath=".\main_receive_multi.c"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

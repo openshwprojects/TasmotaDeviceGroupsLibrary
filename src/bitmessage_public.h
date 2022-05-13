@@ -17,3 +17,9 @@ int MSG_Read3Bytes(bitMessage_t *msg);
 int MSG_EOF(bitMessage_t *msg);
 
 // bitmessage_write.c
+int MSG_WriteBytes(bitMessage_t *msg, void *p, int numBytes);
+int MSG_WriteString(bitMessage_t *msg, const char *s);
+int MSG_WriteU16(bitMessage_t *msg, unsigned short s);
+int MSG_WriteByte(bitMessage_t *msg, byte s);
+int MSG_Write3Bytes(bitMessage_t *msg, int s);
+
