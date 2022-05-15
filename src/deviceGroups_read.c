@@ -1,8 +1,10 @@
+#include "deviceGroups_public.h"
 #include "deviceGroups_local.h"
 #include "bitmessage_public.h"
 
 
-int DGR_Parse(const byte *data, int len) {
+
+int DGR_Parse(const byte *data, int len, dgrDevice_t *dev) {
 	bitMessage_t msg;
 	char groupName[32];
 	int sequence, flags, type;
@@ -20,6 +22,12 @@ int DGR_Parse(const byte *data, int len) {
 	if(MSG_ReadString(&msg,groupName,sizeof(groupName)) <= 0) {
 		printf("DGR_Parse: data chunk with len %i failed to read group name\n",len);
 		return 1;
+	}
+	if(dev != 0) {
+		// right now, only single group support
+		if(strcmp(dev->groupName,groupName)) {
+			return -1;
+		}
 	}
 	sequence = MSG_ReadU16(&msg);
 	flags = MSG_ReadU16(&msg);
@@ -50,8 +58,20 @@ int DGR_Parse(const byte *data, int len) {
 			vals = MSG_ReadByte(&msg);
 			if(type == DGR_ITEM_BRI_POWER_ON) {
 				printf("DGR_ITEM_BRI_POWER_ON: %i\n",vals);
+				// FORWARD TO PROCESSING BY API
+				if(dev) {
+					if(DGR_IsItemInMask(type, dev->devGroupShare_In)) {
+						dev->cbs.processBrightnessPowerOn(vals);
+					}
+				}
 			} else if(type == DGR_ITEM_LIGHT_BRI) {
 				printf("DGR_ITEM_LIGHT_BRI: %i\n",vals);
+				// FORWARD TO PROCESSING BY API
+				if(dev) {
+					if(DGR_IsItemInMask(type, dev->devGroupShare_In)) {
+						dev->cbs.processLightBrightness(vals);
+					}
+				}
 			} else {
 
 			}
@@ -63,6 +83,13 @@ int DGR_Parse(const byte *data, int len) {
 
 				relayFlags = MSG_Read3Bytes(&msg);
 				relaysCnt = MSG_ReadByte(&msg);
+
+				// FORWARD TO PROCESSING BY API
+				if(dev) {
+					if(DGR_IsItemInMask(type, dev->devGroupShare_In)) {
+						dev->cbs.processPower(relayFlags,relaysCnt);
+					}
+				}
 
 				printf("Power event - values %i, numChannels %i, chans=",relayFlags,relaysCnt);
 				for(i = 0; i < relaysCnt; i++) {

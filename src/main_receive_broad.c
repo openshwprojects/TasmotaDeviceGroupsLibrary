@@ -71,7 +71,7 @@ int main() {
 					&len); 
 		buffer[n] = '\0'; 
 		printf("Received %i bytes\n", n); 
-		DGR_Parse(buffer, n);
+		DGR_Parse(buffer, n, 0);
 		//sendto(sockfd, (const char *)hello, strlen(hello),  
 		//    0, (const struct sockaddr *) &cliaddr, 
 		//        len); 

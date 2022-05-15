@@ -45,6 +45,8 @@ int main(int argc, char *argv[])
     // !!! If test requires, make these configurable via args
     //
     const int delay_secs = 1;
+	const char *groupName;
+
 
 #ifdef _WIN32
     //
@@ -56,6 +58,9 @@ int main(int argc, char *argv[])
         return 1;
     }
 #endif
+
+	groupName = "test";
+	groupName = "roomLEDstrips";
 
     // create what looks like an ordinary UDP socket
     //
@@ -85,12 +90,12 @@ int main(int argc, char *argv[])
 		seq++;
 
 		if(0) {
-			len = DGR_Quick_FormatPowerState(message,sizeof(message),"test",seq, 0,channelValue, 1);
+			len = DGR_Quick_FormatPowerState(message,sizeof(message),groupName,seq, 0,channelValue, 1);
 			printf("Sending POWER state %i, packet size %i\n",channelValue,len);
 
 			channelValue = !channelValue;
 		} else {
-			len = DGR_Quick_FormatBrightness(message,sizeof(message),"test",seq,0, channelValue);
+			len = DGR_Quick_FormatBrightness(message,sizeof(message),groupName,seq,0, channelValue);
 			printf("Sending BRIGHTNESS state %i, packet size %i\n",channelValue,len);
 
 			channelValue += 20;

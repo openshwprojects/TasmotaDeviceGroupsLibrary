@@ -61,3 +61,20 @@
 #define DGR_RELAY_22	2097152
 #define DGR_RELAY_23	4194304
 #define DGR_RELAY_24	8388608
+
+
+
+#define DGR_SHARE_POWER				1
+#define DGR_SHARE_LIGHT_BRI			2
+#define DGR_SHARE_LIGHT_FADE		4
+#define DGR_SHARE_LIGHT_SCHEME		8
+#define DGR_SHARE_LIGHT_COLOR		16
+#define DGR_SHARE_DIMMER_SETTINGS	32
+#define DGR_SHARE_EVENT				64
+
+
+u32 DGR_GetMaskForItem(byte item);
+int DGR_IsItemInMask(byte item, u32 mask);
+
+
+
