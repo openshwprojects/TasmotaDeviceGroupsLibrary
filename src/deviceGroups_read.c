@@ -25,7 +25,7 @@ int DGR_Parse(const byte *data, int len, dgrDevice_t *dev) {
 	}
 	if(dev != 0) {
 		// right now, only single group support
-		if(strcmp(dev->groupName,groupName)) {
+		if(strcmp(dev->gr.groupName,groupName)) {
 			return -1;
 		}
 	}
@@ -60,7 +60,7 @@ int DGR_Parse(const byte *data, int len, dgrDevice_t *dev) {
 				printf("DGR_ITEM_BRI_POWER_ON: %i\n",vals);
 				// FORWARD TO PROCESSING BY API
 				if(dev) {
-					if(DGR_IsItemInMask(type, dev->devGroupShare_In)) {
+					if(DGR_IsItemInMask(type, dev->gr.devGroupShare_In)) {
 						dev->cbs.processBrightnessPowerOn(vals);
 					}
 				}
@@ -68,7 +68,7 @@ int DGR_Parse(const byte *data, int len, dgrDevice_t *dev) {
 				printf("DGR_ITEM_LIGHT_BRI: %i\n",vals);
 				// FORWARD TO PROCESSING BY API
 				if(dev) {
-					if(DGR_IsItemInMask(type, dev->devGroupShare_In)) {
+					if(DGR_IsItemInMask(type, dev->gr.devGroupShare_In)) {
 						dev->cbs.processLightBrightness(vals);
 					}
 				}
@@ -86,7 +86,7 @@ int DGR_Parse(const byte *data, int len, dgrDevice_t *dev) {
 
 				// FORWARD TO PROCESSING BY API
 				if(dev) {
-					if(DGR_IsItemInMask(type, dev->devGroupShare_In)) {
+					if(DGR_IsItemInMask(type, dev->gr.devGroupShare_In)) {
 						dev->cbs.processPower(relayFlags,relaysCnt);
 					}
 				}

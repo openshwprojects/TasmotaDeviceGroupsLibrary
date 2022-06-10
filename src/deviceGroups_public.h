@@ -10,11 +10,14 @@ typedef struct dgrCallbacks_s {
 
 } dgrCallbacks_t;
 
-
-typedef struct dgrDevice_s {
+typedef struct dgrGroupDef_s {
 	char groupName[32];
 	u32 devGroupShare_In;
 	u32 devGroupShare_Out;
+} dgrGroupDef_t;
+
+typedef struct dgrDevice_s {
+	dgrGroupDef_t gr;
 	dgrCallbacks_t cbs;
 } dgrDevice_t;
 
